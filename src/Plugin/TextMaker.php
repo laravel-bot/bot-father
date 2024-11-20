@@ -4,6 +4,7 @@ namespace Ispahbod\BotFather\Plugin;
 
 class TextMaker
 {
+    
     public static function persianNumbers($string): string
     {
         $persianNumbers = array('۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹');

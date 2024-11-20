@@ -61,6 +61,40 @@ class User
     }
 
     /**
+     * Retrieves the username if available, otherwise returns the first name and last name,
+     * and if those are not available, returns the unique identifier.
+     *
+     * @return string|int|null The username, full name, or unique identifier.
+     */
+    public function getUsernameOrFullNameOrId(bool $prependAt = true)
+    {
+        if (!empty($this->data['username'])) {
+            return $prependAt ? '@' . $this->data['username'] : $this->data['username'];
+        } elseif (!empty($this->data['first_name']) || !empty($this->data['last_name'])) {
+            return trim(($this->data['first_name'] ?? '') . ' ' . ($this->data['last_name'] ?? ''));
+        } else {
+            return $this->data['id'] ?? null;
+        }
+    }
+
+    /**
+     * Retrieves the first name and last name if available, otherwise returns the username,
+     * and if that is not available, returns the unique identifier.
+     *
+     * @return string|int|null The full name, username, or unique identifier.
+     */
+    public function getFullNameOrUsernameOrId(bool $prependAt = true)
+    {
+        if (!empty($this->data['first_name']) || !empty($this->data['last_name'])) {
+            return trim(($this->data['first_name'] ?? '') . ' ' . ($this->data['last_name'] ?? ''));
+        } elseif (!empty($this->data['username'])) {
+            return $prependAt ? '@' . $this->data['username'] : $this->data['username'];
+        } else {
+            return $this->data['id'] ?? null;
+        }
+    }
+
+    /**
      * Retrieves the IETF language tag of the user's language if available.
      *
      * @return string|null The language code if available, otherwise null.

@@ -53,6 +53,7 @@ final class SendMessageField
      * @var LinkPreviewOptions|null
      */
     public const LINK_PREVIEW_OPTIONS = 'link_preview_options';
+    public const DISABLE_WEB_PAGE_PREVIEW = 'disable_web_page_preview';
 
     /**
      * Sends the message silently. Users will receive a notification with no sound.
